@@ -75,6 +75,7 @@
     <Compile Include="Assets\Tennis\Scripts\GameManager.cs" />
     <Compile Include="Assets\Tennis\Scripts\PlayerAnimatorManager.cs" />
     <Compile Include="Assets\Tennis\Scripts\PlayerManager.cs" />
+    <Compile Include="Assets\Tennis\Scripts\PlayerUI.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
