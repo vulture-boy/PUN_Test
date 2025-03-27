@@ -11,6 +11,11 @@ namespace com.vvv.tennis
 {
     public class GameManager : MonoBehaviourPunCallbacks
     {
+        #region Public Fields
+
+        public static GameManager Instance;
+
+        #endregion
 
         #region Photon Callbacks
 
@@ -44,6 +49,15 @@ namespace com.vvv.tennis
 
                 LoadArena();
             }
+        }
+
+        #endregion
+
+        #region MonoBehaviour Callbacks
+
+        private void Start()
+        {
+            Instance = this;
         }
 
         #endregion
