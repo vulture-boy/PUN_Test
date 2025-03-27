@@ -1,9 +1,10 @@
 using UnityEngine;
 using System.Collections;
+using Photon.Pun;
 
 namespace com.vvv.tennis
 {
-    public class PlayerAnimatorManager : MonoBehaviour
+    public class PlayerAnimatorManager : MonoBehaviourPun
     {
         #region Private Fields
 
@@ -30,6 +31,11 @@ namespace com.vvv.tennis
         // Update is called once per frame
         void Update()
         {
+            if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+            {
+                return;
+            }
+
             if (!animator)
             {
                 return;
