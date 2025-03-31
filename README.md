@@ -2,9 +2,13 @@ Hello! This is a repository for a PUN tutorial I worked on.
 PUN is short for Proton Unity Network; it is a networking library for Unity. https://www.photonengine.com/PUN
 
 Players: 2, networked
+
 Genre: Tennis
+
 Goal: Score 3 points on your opponent by sending the ball behind them.
+
 Controls: Arrow Keys to move the paddle, Click to 'Boost' the power of the rebound on the paddle.
+
 
 This project is to demonstrate that I have completed the basic tutorial and can work with its functionality to create a basic tennis project.
 It was completed over a week while I was employed fulltime in March 2025.
