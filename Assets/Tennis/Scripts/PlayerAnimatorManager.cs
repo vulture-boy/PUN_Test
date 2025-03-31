@@ -9,58 +9,52 @@ namespace com.vvv.tennis
         #region Private Fields
 
         [SerializeField]
-        private float directionDampTime = 0.25f;
+        float xRange = 9.5f;
 
-        private Animator animator;
+        [SerializeField]
+        float speedModifier = 0.25f;
+
+        [SerializeField]
+        bool flipInput;
+
+        bool hasSetName;
 
         #endregion
 
         #region MonoBehaviour Callbacks
 
-        // Use this for initialization
-        void Start()
+        private void Start()
         {
-            animator = GetComponent<Animator>();
-            if (!animator)
+            // We want the joining client to take over this if the input is flipped
+            if (!PhotonNetwork.IsMasterClient && flipInput)
             {
-                Debug.LogError("PlayerAnimatorManager is Missing Animator Component", this);
+                photonView.TransferOwnership(PhotonNetwork.LocalPlayer);
             }
-
         }
 
         // Update is called once per frame
         void Update()
         {
-            if (photonView.IsMine == false && PhotonNetwork.IsConnected == true)
+            if (!photonView.IsMine && PhotonNetwork.IsConnected == true)
             {
                 return;
             }
 
-            if (!animator)
+            if (!hasSetName && PhotonNetwork.IsConnected == true)
             {
-                return;
-            }
-
-            // deal with Jumping
-            AnimatorStateInfo stateInfo = animator.GetCurrentAnimatorStateInfo(0);
-            // only allow jumping if we are running.
-            if (stateInfo.IsName("Base Layer.Run"))
-            {
-                // When using trigger parameter
-                if (Input.GetButtonDown("Fire2"))
-                {
-                    animator.SetTrigger("Jump");
-                }
+                GameManager.Instance.SetPlayerName(photonView.IsMine, photonView.Owner.NickName);
+                hasSetName = true;
             }
 
             float h = Input.GetAxis("Horizontal");
-            float v = Input.GetAxis("Vertical");
-            if (v < 0)
-            {
-                v = 0;
-            }
-            animator.SetFloat("Speed", h * h + v * v);
-            animator.SetFloat("Direction", h, directionDampTime, Time.deltaTime);
+            h = flipInput ? h * -1 : h;
+
+            transform.localPosition += Vector3.right * h * speedModifier;
+ 
+            transform.localPosition = new Vector3(
+                Mathf.Clamp(transform.localPosition.x, xRange * -1, xRange),
+                transform.localPosition.y,
+                transform.localPosition.z);
 
         }
 

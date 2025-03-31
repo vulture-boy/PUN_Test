@@ -44,4 +44,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: de066fa3cafdded46a21618c71a48b07, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerPrefab: {fileID: 6554670287415505217, guid: 66f1eb771c28cb24cab7379fbe9df475, type: 3}
+  playerScoreVisuals: {fileID: 0}
+  opponentScoreVisuals: {fileID: 0}
+  winVisual: {fileID: 0}
+  loseVisual: {fileID: 0}
+  ball: {fileID: 0}
+  winScreenTime: 5

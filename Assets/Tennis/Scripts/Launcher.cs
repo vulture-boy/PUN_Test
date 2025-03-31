@@ -15,7 +15,7 @@ namespace com.vvv.tennis
         /// </summary>
         [Tooltip("The maximum number of players per room. When a room is full, it can't be joined by new players, and so new room will be created")]
         [SerializeField]
-        private byte maxPlayersPerRoom = 4;
+        private byte maxPlayersPerRoom = 2;
 
         [Tooltip("The Ui Panel to let the user enter name, connect and play")]
         [SerializeField]
@@ -32,7 +32,7 @@ namespace com.vvv.tennis
         /// <summary>
         /// This client's version number. Users are separated from each other by gameVersion (which allows you to make breaking changes).
         /// </summary>
-        string gameVersion = "1";
+        string gameVersion = "2";
 
         /// <summary>
         /// Keep track of the current process. Since connection is asynchronous and is based on several callbacks from Photon,
@@ -41,9 +41,6 @@ namespace com.vvv.tennis
         /// </summary>
         bool isConnecting;
 
-        #endregion
-
-        #region Public Fields
         #endregion
 
         #region MonoBehaviour CallBacks
@@ -65,7 +62,6 @@ namespace com.vvv.tennis
         }
 
         #endregion
-
 
         #region Public Methods
 
@@ -138,11 +134,11 @@ namespace com.vvv.tennis
             // #Critical: We only load if we are the first player, else we rely on `PhotonNetwork.AutomaticallySyncScene` to sync our instance scene.
             if (PhotonNetwork.CurrentRoom.PlayerCount == 1)
             {
-                Debug.Log("We load the 'Room for 1' ");
+                Debug.Log("We load the 'Waiting' Room");
 
                 // #Critical
                 // Load the Room Level.
-                PhotonNetwork.LoadLevel("Room for 1");
+                PhotonNetwork.LoadLevel("Waiting");
             }
         }
 

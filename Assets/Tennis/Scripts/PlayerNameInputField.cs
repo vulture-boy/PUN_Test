@@ -24,7 +24,7 @@ namespace com.vvv.tennis
         #region Private Constants
 
         // Store the PlayerPref Key to avoid typos
-        const string playerNamePrefKey = "PlayerName";
+        public const string playerNamePrefKey = "PlayerName";
 
         #endregion
 
